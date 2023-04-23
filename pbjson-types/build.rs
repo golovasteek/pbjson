@@ -8,7 +8,7 @@ type Error = Box<dyn std::error::Error>;
 type Result<T, E = Error> = std::result::Result<T, E>;
 
 fn main() -> Result<()> {
-    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let root = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
     let descriptor_path = root.join("descriptors.bin");
     println!("cargo:rerun-if-changed={}", descriptor_path.display());
 
